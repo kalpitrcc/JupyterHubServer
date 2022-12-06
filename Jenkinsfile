@@ -41,7 +41,7 @@ pipeline {
     stage('Clone') {
       steps {
         container('git') {
-          git branch: 'main', changelog: false, poll: false, url: 'https://github.com/kalpitrcc/JupyterHub.git'
+          git branch: 'main', changelog: false, poll: false, url: 'https://github.com/kalpitrcc/JupyterHubServer.git'
         }
       }
     }  
