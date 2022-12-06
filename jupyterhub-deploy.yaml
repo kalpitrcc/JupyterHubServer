@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-deployment
+  labels:
+     app: jupyterhub
+     
+
+spec:
+  template:
+     metadata:
+       name: jupyhub-pod
+       labels:
+         app: jupyterhub
+
+     spec:
+         containers:
+           - name: jupyter-app
+             image: "@@@IMAGE_TAG@@@"
+             ports:
+             - containerPort: 8888
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyterhub
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jupyter-svc
+  labels:
+     hpecp.hpe.com/hpecp-internal-gateway: "true"
+spec:
+  selector:
+    app: jupyterhub
+  type: NodePort
+  ports:
+    - protocol: TCP
+      targetPort: 8888
+      port: 8888
+     
