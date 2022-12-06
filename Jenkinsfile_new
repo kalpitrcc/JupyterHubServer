@@ -76,9 +76,8 @@ pipeline {
            withKubeConfig([credentialsId: 'KUBECONFIG', serverUrl: 'https://hpecp-10-1-100-147.rcc.local:10007']) {
              sh 'kubectl delete -f jupyterhub-deploy.yaml'
              sh 'kubectl create -f jupyterhub-deploy.yaml'
-	     def jupyterhuburl = sh(returnStdout: true, script: 'kubectl get  svc jupyter-svc -o jsonpath=\'{.metadata.annotations.hpecp-internal-gateway/8888}\'')
-	     echo "JUPYTER HUB URL: http://${jupyterhuburl}" 
-            // sh 'kubectl get  svc jupyter-svc -o jsonpath="{.metadata.annotations.hpecp-internal-gateway/8888}"'
+             sh 'kubectl get  svc jupyter-svc -o jsonpath="{.metadata.annotations.hpecp-internal-gateway/8888}" > /tmp/service'
+	     sh 'cat /tmp/service'
            }
         }
      }
