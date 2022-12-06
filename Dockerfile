@@ -11,6 +11,6 @@ RUN chmod +x /etc/entrypoint.sh
 COPY kernel.json /opt/conda/share/jupyter/kernels/python3/kernel.json
 EXPOSE 8888
 #CMD ['sh','/etc/entrypoint.sh']
-CMD ['jupyterhub', '-f', '/etc/config.py']
+CMD ["/opt/conda/bin/jupyterhub", "-f", "/etc/config.py"]
 
 
