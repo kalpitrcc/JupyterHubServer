@@ -75,9 +75,10 @@ pipeline {
         container('shell') {
            withKubeConfig([credentialsId: 'KUBECONFIG', serverUrl: 'https://hpecp-10-1-100-147.rcc.local:10007']) {
              sh 'kubectl delete -f jupyterhub-deploy.yaml'
+	     sh 'sleep 10s'
              sh 'kubectl create -f jupyterhub-deploy.yaml'
-             sh 'kubectl get  svc jupyter-svc -o jsonpath="{.metadata.annotations.hpecp-internal-gateway/8888}" > /tmp/service'
-	     sh 'cat /tmp/service'
+	     sh 'sleep 10s'
+             sh 'kubectl get  svc jupyter-svc -o jsonpath="{.metadata.annotations.hpecp-internal-gateway/8888}"'
            }
         }
      }
