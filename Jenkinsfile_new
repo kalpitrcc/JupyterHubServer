@@ -78,7 +78,7 @@ pipeline {
              sh 'cat /home/jenkins/agent/workspace/jupyterhub_main/jupyterhub-deploy.yaml'
              sh 'kubectl delete -f /home/jenkins/agent/workspace/jupyterhub_main/jupyterhub-deploy.yaml'
              sh 'kubectl create -f /home/jenkins/agent/workspace/jupyterhub_main/jupyterhub-deploy.yaml'
-             sh 'kubectl get  svc jupyter-svc -o jsonpath='{.metadata.annotations.hpecp-internal-gateway/8888}'
+             sh 'kubectl get  svc jupyter-svc -o jsonpath="{.metadata.annotations.hpecp-internal-gateway/8888}"'
            }
         }
      }
